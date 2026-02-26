@@ -1,99 +1,49 @@
 import React, { useState } from 'react'
 import Personal from './Personal';
+import Plan from './Plan';
+import Summary from './Summary';
 
 const Form = () => {
 
   const[formData, setFormData] = useState({
-    personal:{
-      name:"",
-      email:"",
-      phone:""
-    },
-    plan:{
-      type:"",
-      billing:"monthly"
-    },
-    addons: []
-  });
-
-  const[errors, setErrors] = useState({
-    personal:{},
-    plan:{},
-    addons:{}
+    name:"",
+    email:"",
+    phone: "",
+    plan:"monthly",
+    addons : ""
   })
 
-  const[currentStep, setCurrentStep] = useState(1);
+  const[step, setStep] = useState(1);
 
 
-// will write later
-  const validatePersonal = (data)=>{
-    let errors = {}
-    if(!data.name.trim()){
-      errors.name = "Name required"
+  const handleNextStep = ()=>{
+    if(step===1 && formData.name===""){
+      alert("Name is req")
+
+      return;
     }
-    if(!data.email.trim()){
-      errors.email =  "Email required"
-    }
-    return errors
+    setStep(prev => prev + 1);
   }
 
-  const validatePlan = ()=>{
-    return {}
+  const handleBack = ()=>{
+    setStep(prev => prev - 1);
   }
 
 
-   const steps = [
-    {key: "personal", validator: validatePersonal},
-    {key: "plan", validator: validatePlan},
-    {key:"addons", validator: null}
-  ]
-
-  const updateField = (section, field, value)=>{
-    setFormData(prev =>({
-    ...prev, [section]:{
-      ...prev[section],
-      [field]: value
-    }
-
-  }))
-}
-
-  const nextStep = ()=>{
-     const current = steps[currentStep - 1];
-
-     if(!current.validator){
-      setCurrentStep(prev => prev +1)
-      return
-     }
-
-  const stepErrors = current.validator(formData[current.key]);
-
-  setErrors(prev => ({
-    ...prev, [current.key]: stepErrors
-  }))
-
-  if(Object.keys(stepErrors).length === 0){
-    setCurrentStep(prev => prev +1)
-  }
-}
-
-
-
-console.log("STEP:", currentStep)
-console.log("DATA:", formData)
-console.log("ERRORS:", errors)
 
 
   return (
+    <div>
+      {step === 1 &&  <Personal formData={formData} setFormData={setFormData} />}
 
-   <div>
+      {step === 2 && <Plan formData={formData} setFormData={setFormData}/>}
+      {step === 3 && <Summary formData={formData}/>}
 
-       {currentStep === 1 && <Personal formData={formData} updateField={updateField} />}
+      {step < 2 && <button onClick={handleNextStep} style={{marginTop: "20px"}}>Next Step</button>}
 
-    <button onClick={nextStep}>Next</button>
-
-   </div>
-
+      {step > 1 && <button onClick={handleBack} style={{marginTop: "20px"}}>Back</button>}
+      {step===2 && <button onClick={handleNextStep}>submit</button>}
+    </div>
   )
 }
 

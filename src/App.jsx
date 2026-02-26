@@ -1,14 +1,12 @@
+import React from 'react'
+import Form from './components/Form'
 
-import Form from './components/Form';
+const App = () => {
+  return (
+    <div>
+      <Form/>
+    </div>
+  )
+}
 
- const MultiStepForm = () => {
-
-
-   return (
-     <div className='form'>
-       <Form />
-     </div>
-   )
- }
-
- export default MultiStepForm
+export default App

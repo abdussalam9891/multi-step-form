@@ -1,18 +1,16 @@
 import React from 'react'
 
-const Personal = ({formData, updateField}) => {
+const Personal = ({formData, setFormData}) => {
   return (
     <div>
-      <h2>Personal info</h2>
-      <p>Please provide your name, email address, and phone number.</p>
+      <h1>personal info</h1>
+      <p>plese enter your name, email, and phone number</p>
 
+      <input type="text" placeholder='name' value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
 
-        <input type="text" value={formData.name} placeholder='Name' onChange={e => updateField("name", e.target.value)} />
-        <input type="email" value={formData.email} placeholder='Email Address' onChange={e => updateField("email", e.target.value)} />
-        <input type="tel"  value={formData.phone} placeholder='Phone Number' onChange={e => updateField("phone", e.target.value)} />
+      <input type="email" placeholder='email' value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
 
-        <button>Next Step</button>
-
+      <input type="tel" placeholder='phone' value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
     </div>
   )
 }

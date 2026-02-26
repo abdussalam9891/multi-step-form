@@ -1,25 +1,30 @@
-import React from 'react'
+ import React from 'react'
 
-const plans = {
-  arcade:{monthly : 9, yearly: 90},
-  advanced: {monthly: 12, yearly: 120},
-  pro: {monthly: 15, yearly: 150}
-};
 
-const Plan = ({formData, updateField}) => {
-  return (
-    <div>
-      <h2>Select your plan</h2>
-      <p>you have the option of monthly or yearly billing</p>
 
-      {Object.keys(plans).map(plan =>{
-        return <button key={plan} onClick={()=> updateField("plan", plan)}>{plan}</button>
-      })}
+ const Plan = ({formData, setFormData}) => {
 
-      <button></button>
 
-    </div>
-  )
-}
+  
+   return (
+     <div>
+      <h1>select your plan</h1>
+      <p>you have the option of monthly or yearly billing.</p>
 
-export default Plan
+       <select
+        value={formData.plan}
+        onChange={(e) =>
+          setFormData({ ...formData, plan: e.target.value })
+        }
+      >
+        <option value="">Choose plan</option>
+        <option value="basic">Basic</option>
+        <option value="pro">Pro</option>
+      </select>
+
+
+     </div>
+   )
+ }
+
+ export default Plan
