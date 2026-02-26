@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Personal from './Personal';
 
 const Form = () => {
 
@@ -87,8 +88,7 @@ console.log("ERRORS:", errors)
 
    <div>
 
-      <input
-       value={formData.personal.name} onChange={(e)=>updateField("personal", "name", e.target.value)} />
+       {currentStep === 1 && <Personal formData={formData} updateField={updateField} />}
 
     <button onClick={nextStep}>Next</button>
 
