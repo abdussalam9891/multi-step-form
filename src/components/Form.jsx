@@ -57,7 +57,6 @@ const Form = () => {
   }))
 }
 
-
   const nextStep = ()=>{
      const current = steps[currentStep - 1];
 
