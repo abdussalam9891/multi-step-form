@@ -7,9 +7,9 @@ const Personal = ({formData, updateField}) => {
       <p>Please provide your name, email address, and phone number.</p>
 
 
-        <input type="text" value={formData.name} placeholder='Name' onChange={e => updateField(e.target.value)} />
-        <input type="email" value={formData.email} placeholder='Email Address' onChange={e => updateField(e.target.value)} />
-        <input type="tel"  value={formData.phone} placeholder='Phone Number' onChange={e => updateField(e.target.value)} />
+        <input type="text" value={formData.name} placeholder='Name' onChange={e => updateField("name", e.target.value)} />
+        <input type="email" value={formData.email} placeholder='Email Address' onChange={e => updateField("email", e.target.value)} />
+        <input type="tel"  value={formData.phone} placeholder='Phone Number' onChange={e => updateField("phone", e.target.value)} />
 
         <button>Next Step</button>
 
