@@ -30,13 +30,13 @@ const Addons = ({ formData, setFormData }) => {
   };
 
   return (
-    <div>
+    <div className="addons-page">
       <h2>Pick add-ons</h2>
       <p>Add-ons help enhance your gaming experience.</p>
 
       {addonsList.map((item) => {
         return (
-          <li key={item.id}>
+          <li className="list" key={item.id}>
             <input
               type="checkbox"
               checked={formData.addons.includes(item.id)}

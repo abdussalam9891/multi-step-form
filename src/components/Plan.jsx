@@ -38,22 +38,15 @@ const Plan = ({ formData, setFormData, setStep }) => {
   };
 
   return (
-    <div>
+    <div className="plan-page">
       <h2>Select your plan</h2>
 
-      {plans.map((plan) => (
+     <div className="plan">
+       {plans.map((plan) => (
         <div
+        className="select-plan"
           key={plan.name}
           onClick={() => handleSelect(plan)}
-          style={{
-            border:
-              formData.plan?.name === plan.name
-                ? "2px solid purple"
-                : "1px solid gray",
-            padding: "10px",
-            marginBottom: "10px",
-            cursor: "pointer",
-          }}
         >
           <h4>{plan.name}</h4>
           <p>
@@ -63,18 +56,19 @@ const Plan = ({ formData, setFormData, setStep }) => {
         </div>
       ))}
 
-      <button onClick={toggleBilling}>
+     </div>
+      <button className="toggle-button-plan" onClick={toggleBilling}>
         Switch to {billing === "monthly" ? "Yearly" : "Monthly"}
       </button>
 
       <br /><br />
 
-      <button
+      {/* <button
         disabled={!formData.plan}
         onClick={() => setStep(3)}
       >
         Next
-      </button>
+      </button> */}
     </div>
   );
 };
