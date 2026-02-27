@@ -30,7 +30,7 @@ const Addons = ({ formData, setFormData}) => {
             </span>
            </div>
            <div className="list-bill">
-            ${item.price}/{formData.plan === "monthly" ? "mo" : "yr"}
+            ${item[formData.billing]}/{formData.plan === "monthly" ? "mo" : "yr"}
 
            </div>
 
