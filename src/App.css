@@ -23,7 +23,7 @@
 }
 
 body {
-  background: hsl(217, 100%, 97%);
+  background: black;
   font-family: "Ubuntu", sans-serif;
   display: flex;
   justify-content: center;
@@ -96,8 +96,12 @@ button:last-child {
   border-radius: 12px;
   background: var(--blue-100);
 }
-.select-plan:hover{
+.select-plan.active {
+  border: 2px solid hsl(243, 100%, 62%);
   background: violet;
+}
+.select-plan:hover{
+  background: var(--blue-300);
 }
 .toggle-button-plan{
   color: var(--blue-950);
@@ -142,6 +146,11 @@ button:last-child {
 }
 .list-content p:last-of-type{
   font-size: 14px;
+}
+
+.list.active {
+  border: 2px solid hsl(243, 100%, 62%);
+  background: hsl(217, 100%, 97%);
 }
 
 

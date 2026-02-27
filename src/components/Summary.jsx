@@ -1,25 +1,35 @@
 import React from 'react'
-import {plans, addonList} from '../data/pricing';
+import {plans, addonsList} from '../data/pricing';
 
 const Summary = ({ formData, setStep }) => {
 
+  const billing = formData.billing ?? "monthly" ;
+  const period = billing === "monthly" ? "mo" : "yr";
+  const Addons = formData.addons ?? [];
+
+
+
+
    const selectedPlan = plans.find(x => x.name === formData.plan);
 
-   const selectedAddons = addonList.filter(x => formData.addons.includes(x.id));
+   const selectedAddons = addonsList.filter(x => Addons.includes(x.id));
 
-   const planPrice = selectedPlan[formData.billing];
+   const planPrice = selectedPlan[billing];
 
-   const addonsTotal = selectedAddons.reduce((acc, addon) => acc + addon[formData.billing], 0 );
+   console.log(selectedPlan);
+   console.log(formData.plan);
+
+   const addonsTotal = selectedAddons.reduce((acc, addon) => acc + addon[billing], 0 );
 
    const total = planPrice + addonsTotal;
 
 
 
 
-  if (!formData.plan) return <p>No plan selected.</p>;
+  
 
 
- 
+
 
    return (
     <div className="summary">
@@ -29,7 +39,7 @@ const Summary = ({ formData, setStep }) => {
         <div className="plan-row">
           <div>
             <h4>
-              {formData.plan.name} ({formData.billing})
+              {formData.plan} ({billing})
             </h4>
             <button
               className="change-btn"
@@ -39,19 +49,19 @@ const Summary = ({ formData, setStep }) => {
             </button>
           </div>
           <strong>
-            ${formData.plan.price}/
-            {formData.billing === "monthly" ? "mo" : "yr"}
+            ${planPrice}/
+            {period}
           </strong>
         </div>
 
         <hr />
 
-        {addons.map((addon) => (
-          <div key={addon.id} className="addon-row">
-            <span>{addon.label}</span>
+        {selectedAddons.map((item) => (
+          <div key={item.id} className="addon-row">
+            <span>{item.label}</span>
             <span>
-              +${addon.price}/
-              {formData.billing === "monthly" ? "mo" : "yr"}
+              +${item[billing]}/
+              {period}
             </span>
           </div>
         ))}
@@ -60,11 +70,11 @@ const Summary = ({ formData, setStep }) => {
       <div className="summary-total">
         <span>
           Total (per{" "}
-          {formData.billing === "monthly" ? "month" : "year"})
+          {period})
         </span>
         <strong>
           ${total}/
-          {formData.billing === "monthly" ? "mo" : "yr"}
+          {period}
         </strong>
       </div>
     </div>

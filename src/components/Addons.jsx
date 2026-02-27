@@ -1,6 +1,12 @@
 import {addonsList} from '../data/pricing';
 
 const Addons = ({ formData, setFormData}) => {
+
+  const billing = formData.billing ?? "monthly";
+  const period =  billing === "monthly" ? "mo" : "yr";
+  const selectedAddons = formData.addons ?? [];
+
+
   const handleToggle = (id) => {
     setFormData((prev) => ({
       ...prev,
@@ -15,14 +21,16 @@ const Addons = ({ formData, setFormData}) => {
       <h2>Pick add-ons</h2>
       <p>Add-ons help enhance your gaming experience.</p>
 
-      {addonsList.map((item) => {
+      <ul className='addons-list'>
+        {addonsList.map((item) => {
         return (
-          <li className="list" key={item.id}>
+
+            <li className={`list ${selectedAddons.includes(item.id) ? "active" : ""}`} key={item.id} onClick={()=>handleToggle(item.id)}>
            <div className="list-content">
              <input
               type="checkbox"
-              checked={formData.addons.includes(item.id)}
-              onChange={() => handleToggle(item.id)}
+              checked={selectedAddons.includes(item.id)}
+               readOnly
             />
             <span>
                <p>{item.label}</p>
@@ -30,13 +38,15 @@ const Addons = ({ formData, setFormData}) => {
             </span>
            </div>
            <div className="list-bill">
-            ${item[formData.billing]}/{formData.plan === "monthly" ? "mo" : "yr"}
+            ${item[billing]}/{period}
 
            </div>
 
           </li>
+
         );
       })}
+      </ul>
     </div>
   );
 };

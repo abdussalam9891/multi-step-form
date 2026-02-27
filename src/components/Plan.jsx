@@ -4,34 +4,17 @@ import { plans } from "../data/pricing";
 
 
 const Plan = ({ formData, setFormData}) => {
-  const billing = formData.billing || "monthly";
+
+  const billing = formData.billing ?? "monthly";
+  const period =  billing === "monthly" ?  "mo" : "yr";
+
 
   const handleSelect = (plan) => {
-    setFormData({
-      ...formData,
-      plan: {
-        name: plan.name,
-        price: billing === "monthly" ? plan.monthly : plan.yearly,
-      },
-    });
+    setFormData(prev => ({...prev, plan: plan.name}));
   };
 
   const toggleBilling = () => {
-    const newBilling = billing === "monthly" ? "yearly" : "monthly";
-
-    setFormData({
-      ...formData,
-      billing: newBilling,
-      plan: formData.plan
-        ? {
-            ...formData.plan,
-            price:
-              newBilling === "monthly"
-                ? plans.find(p => p.name === formData.plan.name).monthly
-                : plans.find(p => p.name === formData.plan.name).yearly,
-          }
-        : null,
-    });
+    setFormData(prev => ({...prev, billing: prev.billing === "monthly" ? "yearly" : "monthly"}));
   };
 
   return (
@@ -39,16 +22,15 @@ const Plan = ({ formData, setFormData}) => {
       <h2>Select your plan</h2>
 
      <div className="plan">
-       {plans.map((plan) => (
+       {plans.map((item) => (
         <div
-        className="select-plan"
-          key={plan.name}
-          onClick={() => handleSelect(plan)}
+        className={`select-plan ${formData.plan === item.name ? "active" : ""}`}
+          key={item.name}
+          onClick={() => handleSelect(item)}
         >
-          <h4>{plan.name}</h4>
+          <h4>{item.name}</h4>
           <p>
-            ${billing === "monthly" ? plan.monthly : plan.yearly}/
-            {billing === "monthly" ? "mo" : "yr"}
+            ${item[billing]}/{period}
           </p>
         </div>
       ))}
