@@ -1,12 +1,9 @@
 import React from "react";
+import { plans } from "../data/pricing";
 
-const plans = [
-  { name: "Arcade", monthly: 9, yearly: 90 },
-  { name: "Advanced", monthly: 12, yearly: 120 },
-  { name: "Pro", monthly: 15, yearly: 150 },
-];
 
-const Plan = ({ formData, setFormData, setStep }) => {
+
+const Plan = ({ formData, setFormData}) => {
   const billing = formData.billing || "monthly";
 
   const handleSelect = (plan) => {
@@ -63,12 +60,7 @@ const Plan = ({ formData, setFormData, setStep }) => {
 
       <br /><br />
 
-      {/* <button
-        disabled={!formData.plan}
-        onClick={() => setStep(3)}
-      >
-        Next
-      </button> */}
+
     </div>
   );
 };

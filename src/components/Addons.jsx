@@ -1,25 +1,6 @@
-const addonsList = [
-  {
-    id: "Online",
-    label: "Online service",
-    desc: "Access to multiplayer games",
-    price: 1,
-  },
-  {
-    id: "storage",
-    label: "Larger storage",
-    desc: "Extra 1TB of cloud save",
-    price: 2,
-  },
-  {
-    id: "profile",
-    label: "Customizable Profile",
-    desc: "Custom theme on your profile",
-    price: 2,
-  },
-];
+import {addonsList} from '../data/pricing';
 
-const Addons = ({ formData, setFormData }) => {
+const Addons = ({ formData, setFormData}) => {
   const handleToggle = (id) => {
     setFormData((prev) => ({
       ...prev,
@@ -37,13 +18,22 @@ const Addons = ({ formData, setFormData }) => {
       {addonsList.map((item) => {
         return (
           <li className="list" key={item.id}>
-            <input
+           <div className="list-content">
+             <input
               type="checkbox"
               checked={formData.addons.includes(item.id)}
               onChange={() => handleToggle(item.id)}
             />
-            <p>{item.label}</p>
+            <span>
+               <p>{item.label}</p>
             <p>{item.desc}</p>
+            </span>
+           </div>
+           <div className="list-bill">
+            ${item.price}/{formData.plan === "monthly" ? "mo" : "yr"}
+
+           </div>
+
           </li>
         );
       })}

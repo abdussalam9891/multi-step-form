@@ -12,7 +12,8 @@ const Form = () => {
     name:"",
     email:"",
     phone: "",
-    plan:"monthly",
+    plan:"",
+    billing:"monthly",
     addons : []
   })
 
