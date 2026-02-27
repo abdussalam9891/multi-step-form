@@ -21,3 +21,159 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+  background: hsl(217, 100%, 97%);
+  font-family: "Ubuntu", sans-serif;
+}
+
+.form-container {
+  display: flex;
+  max-width: 900px;
+  margin: 60px auto;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.form-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+button {
+  padding: 12px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+button:last-child {
+  background: hsl(213, 96%, 18%);
+  color: white;
+}
+
+
+
+
+
+
+
+
+.slidebar {
+  width: 250px;
+  background: linear-gradient(
+    to bottom,
+    hsl(243, 100%, 62%),
+    hsl(228, 100%, 84%)
+  );
+  border-radius: 10px;
+  padding: 30px 20px;
+  color: white;
+}
+
+.stepper li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.active .step-number {
+  background: white;
+  color: hsl(243, 100%, 62%);
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+.plan-card {
+  border: 1px solid hsl(231, 11%, 63%);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.plan-card.active {
+  border: 2px solid hsl(243, 100%, 62%);
+}
+
+
+
+
+
+
+
+.addon-item {
+  border: 1px solid hsl(231, 11%, 63%);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+
+
+
+
+
+
+
+.summary-box {
+  background: hsl(217, 100%, 97%);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.plan-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addon-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  font-weight: bold;
+}
+
+.change-btn {
+  background: none;
+  border: none;
+  color: hsl(231, 11%, 63%);
+  text-decoration: underline;
+  cursor: pointer;
+}
