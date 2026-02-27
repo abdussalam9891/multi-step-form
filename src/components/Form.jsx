@@ -54,9 +54,9 @@ const Form = () => {
         {step === 4 && <Summary formData={formData} setStep={setStep} />}
 
         <div className="buttons">
-          {step > 1 && <button onClick={handleBack}>Back</button>}
+          {step > 1 && <button className="back-btn" onClick={handleBack}>Back</button>}
 
-          <button onClick={handleNextStep}>
+          <button className="next-btn" onClick={handleNextStep}>
             {step === 4 ? "Confirm" : "Next Step"}
           </button>
         </div>

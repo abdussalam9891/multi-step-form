@@ -5,19 +5,22 @@ const Summary = ({ formData, setStep }) => {
 
   const billing = formData.billing ?? "monthly" ;
   const period = billing === "monthly" ? "mo" : "yr";
-  const Addons = formData.addons ?? [];
+  const periodLabel = billing === "monthly" ? "month" : "year";
+  const selectedAddonIds = formData.addons ?? [];
 
 
 
 
    const selectedPlan = plans.find(x => x.name === formData.plan);
 
-   const selectedAddons = addonsList.filter(x => Addons.includes(x.id));
+   if(!selectedPlan){
+    return <p>No plan selected.</p>
+   }
+
+   const selectedAddons = addonsList.filter(x => selectedAddonIds.includes(x.id));
 
    const planPrice = selectedPlan[billing];
 
-   console.log(selectedPlan);
-   console.log(formData.plan);
 
    const addonsTotal = selectedAddons.reduce((acc, addon) => acc + addon[billing], 0 );
 
@@ -26,12 +29,13 @@ const Summary = ({ formData, setStep }) => {
 
 
 
-  
+
 
 
 
 
    return (
+    
     <div className="summary">
       <h2>Finishing up</h2>
 
@@ -39,7 +43,7 @@ const Summary = ({ formData, setStep }) => {
         <div className="plan-row">
           <div>
             <h4>
-              {formData.plan} ({billing})
+              {selectedPlan.name} ({billing})
             </h4>
             <button
               className="change-btn"
@@ -70,7 +74,7 @@ const Summary = ({ formData, setStep }) => {
       <div className="summary-total">
         <span>
           Total (per{" "}
-          {period})
+          {periodLabel})
         </span>
         <strong>
           ${total}/
